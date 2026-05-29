@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zelic</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/zelic.css') }}">
+</head>
+<body>
+
+<div class="atm"></div>
+<canvas id="gc"></canvas>
+
+<div class="shell">
+
+  <!-- ══ TOPBAR ══ -->
+  <div class="topbar">
+    <div class="zmark" title="Zelic">
+      <div class="zd-halo"></div>
+      <div class="zd-inner"></div>
+      <div class="zd-outer"></div>
+    </div>
+    <div class="tb-name">Zelic</div>
+    <div class="tb-div"></div>
+    <div class="tb-tabs">
+      <div class="tb-tab on" data-tab="home">Home</div>
+      <div class="tb-tab"    data-tab="chat">Chats</div>
+      <div class="tb-tab"    data-tab="files">Files</div>
+    </div>
+    <div class="tb-sp"></div>
+    <div class="tb-r">
+      <div class="sys-pill"><div class="sdot"></div>SYSTEM ONLINE</div>
+      <div class="tb-clk" id="clk">—</div>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- ══ SIDEBAR — solo navegación, sin historial ══ -->
+    <div class="nav-col">
+      <div class="nav-cap">
+
+        <!-- 1. HOME -->
+        <div class="ni on" data-ni="home" title="Home">
+          <i class="ti ti-home-2" aria-hidden="true"></i>
+          <span class="ni-tt">home</span>
+        </div>
+
+        <!-- 2. CHATS -->
+        <div class="ni" data-ni="chat" id="ni-chat" title="Chats">
+          <i class="ti ti-message-2" aria-hidden="true"></i>
+          <span class="ni-tt">chats</span>
+        </div>
+
+        <!-- 3. VOZ -->
+        <div class="ni" data-ni="voz" id="ni-voz" title="Voz (Ctrl+Z)">
+          <i class="ti ti-microphone" aria-hidden="true"></i>
+          <span class="ni-tt">voice</span>
+        </div>
+
+        <div class="n-hr"></div>
+
+        <!-- 4. FILES -->
+        <div class="ni" data-ni="files" title="Files">
+          <i class="ti ti-folder-open" aria-hidden="true"></i>
+          <span class="ni-tt">files</span>
+        </div>
+
+        <div class="n-hr"></div>
+
+        <!-- 5. SETTINGS -->
+        <div class="ni" data-ni="settings" title="Settings">
+          <i class="ti ti-settings" aria-hidden="true"></i>
+          <span class="ni-tt">settings</span>
+        </div>
+
+      </div>
+    </div><!-- /.nav-col -->
+
+    <!-- ══ PANEL CENTRAL — vistas intercambiables ══ -->
+    <div class="center">
+
+      <!-- ── VISTA HOME ── -->
+      <div class="pv" id="pv-home">
+        <div class="home-stage">
+          <div class="orb-sys home-orb">
+            <div class="rng rng-4"></div>
+            <div class="rng rng-3"></div>
+            <div class="rng rng-2"></div>
+            <div class="rng rng-1"></div>
+            <div class="arc-w"><div class="arc"></div></div>
+            <div class="arc-w rv"><div class="arc" style="transform:rotate(90deg)"></div></div>
+            <div class="orb-c"><div class="orb-bead"></div></div>
+          </div>
+          <div class="home-name">Zelic</div>
+          <div class="home-sub"><div class="cs-dot"></div>Neural Core Online</div>
+          <div class="home-greet">Hello, Santiago</div>
+          <div class="home-hint">What would you like to do?</div>
+          <div class="home-actions">
+            <button class="ha-btn primary" onclick="iniciarDesdeHome()">
+              <i class="ti ti-message-plus"></i> Nueva conversación
+            </button>
+            <button class="ha-btn" onclick="activarVista('workspace')">
+              <i class="ti ti-history"></i> Ver historial
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── VISTA CHAT (sistema + voz comparten este panel) ── -->
+      <div class="pv" id="pv-chat" style="display:none">
+        <div class="div-line"></div>
+        <div class="chat" id="chat">
+          <div class="thread" id="thread">
+
+            <div class="msg" id="msg-welcome">
+              <div class="av z"></div>
+              <div class="mb">
+                <div class="mw">zelic <span class="mw-tag">// sistema</span></div>
+                <div class="mt">Sistemas nominales. Inicia una nueva conversación o carga una del historial.</div>
+              </div>
+            </div>
+
+            <div class="t-row" id="trow" style="display:none">
+              <div class="av z"></div>
+              <div class="t-body">
+                <div class="t-lbl" id="tlbl">procesando</div>
+                <div class="t-dots">
+                  <div class="td"></div><div class="td"></div><div class="td"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="inp-z">
+          <div class="ig">
+            <div class="ig-line"></div>
+            <div class="ig-inner">
+              <textarea class="inp" id="inp" placeholder="Ask Zelic…" rows="1"
+                        aria-label="Mensaje para Zelic"></textarea>
+              <div class="i-btns">
+                <div class="ib" id="btn-adjuntar" title="Adjuntar archivo">
+                  <i class="ti ti-paperclip" aria-hidden="true"></i>
+                </div>
+                <div class="ib" id="mic" title="Activar voz (Ctrl+Z)">
+                  <i class="ti ti-microphone" aria-hidden="true"></i>
+                </div>
+                <div class="ib send" id="sb" title="Enviar (Enter)">
+                  <i class="ti ti-arrow-up" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+            <div class="ig-meta">
+              <span class="ikt">↵ send</span>
+              <span class="ikt">⇧↵ newline</span>
+              <span class="ikt">⌃Z voice</span>
+              <span class="ikt-sp"></span>
+              <div id="adjunto-info"></div>
+              <span class="ikt-m" id="mdl">gemini-2.5-flash</span>
+            </div>
+          </div>
+        </div>
+        <input type="file" id="file-input" style="display:none"
+               accept=".pdf,.txt,.doc,.docx,.png,.jpg,.jpeg,.csv,.json,.py,.js,.html,.md">
+      </div><!-- /#pv-chat -->
+
+      <!-- ── VISTA WORKSPACE (historial de conversaciones) ── -->
+      <div class="pv" id="pv-workspace" style="display:none">
+        <div class="ws-header">
+          <div class="ws-title">
+            <span class="c">◆</span> Conversaciones
+          </div>
+          <button class="ha-btn primary ws-new-btn" onclick="iniciarDesdeHome()">
+            <i class="ti ti-plus"></i> Nueva
+          </button>
+        </div>
+        <div class="ws-list" id="ws-sesiones-list">
+          <div class="rp-empty">Cargando historial...</div>
+        </div>
+      </div>
+
+      <!-- ── VISTA FILES ── -->
+      <div class="pv" id="pv-files" style="display:none">
+        <div class="ws-header">
+          <div class="ws-title"><span class="c">◆</span> Archivos</div>
+          <button class="ha-btn ws-new-btn" onclick="document.getElementById('file-input').click()">
+            <i class="ti ti-upload"></i> Subir
+          </button>
+        </div>
+        <div class="files-grid" id="files-grid">
+          <div class="files-empty">
+            <i class="ti ti-folder-open" style="font-size:28px;color:var(--t3);display:block;margin-bottom:10px"></i>
+            <span>No hay archivos en esta sesión.</span>
+            <span style="font-size:9px;margin-top:4px;color:var(--t3)">Adjunta un archivo desde el chat.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── VISTA SETTINGS ── -->
+      <div class="pv" id="pv-settings" style="display:none">
+        <div class="ws-header">
+          <div class="ws-title"><span class="c">◆</span> Settings</div>
+        </div>
+        <div class="settings-scroll">
+          <div class="settings-section">
+            <div class="rp-l">Perfil</div>
+            <div class="settings-card">
+              <div class="settings-avatar">S</div>
+              <div class="settings-info">
+                <div class="settings-name">Santiago</div>
+                <div class="settings-role">Usuario · Zelic AI</div>
+              </div>
+            </div>
+          </div>
+          <div class="settings-section">
+            <div class="rp-l">Actividad</div>
+            <div class="opts-card">
+              <div class="opts-row">
+                <span class="ck">conversaciones</span>
+                <span class="cv" id="opt-chats">—</span>
+              </div>
+              <div class="opts-row">
+                <span class="ck">mensajes enviados</span>
+                <span class="cv" id="opt-msgs">—</span>
+              </div>
+              <div class="opts-row">
+                <span class="ck">sesión activa</span>
+                <span class="cv c" id="opt-sid">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="settings-section">
+            <div class="rp-l">Sistema</div>
+            <div class="opts-card">
+              <div class="opts-row">
+                <span class="ck">modelo</span>
+                <span class="cv c">gemini-2.5-flash</span>
+              </div>
+              <div class="opts-row">
+                <span class="ck">memoria</span>
+                <span class="cv">SQLite · local</span>
+              </div>
+              <div class="opts-row">
+                <span class="ck">cpu</span>
+                <span class="cv" id="opt-cpu">—</span>
+              </div>
+              <div class="opts-row">
+                <span class="ck">ram</span>
+                <span class="cv" id="opt-ram">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.center -->
+
+    <!-- ══ PANEL DERECHO ══ -->
+    <div class="rp" id="rp-main">
+
+      <!-- Orb + status -->
+      <div class="rp-head">
+        <div class="m-orb">
+          <div class="m-ring a"></div>
+          <div class="m-ring b"></div>
+          <div class="m-bead"></div>
+        </div>
+        <div class="rp-status">
+          <span class="c">◆</span>
+          <span id="rpst">online</span>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="rp-s">
+        <div class="rp-l">Status</div>
+        <div class="rp-status-card">
+          <div class="rsc-dot"></div>
+          <div>
+            <div class="rsc-label">SYSTEM ONLINE</div>
+            <div class="rsc-sub">neural core activo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Context -->
+      <div class="rp-s" style="margin-top:10px">
+        <div class="rp-l">Context</div>
+        <div class="ctx-card">
+          <div class="ctx-card-label">intent</div>
+          <div class="ctx-card-val" id="ctx-i">—</div>
+        </div>
+        <div class="ctx-card">
+          <div class="ctx-card-label">module</div>
+          <div class="ctx-card-val" id="ctx-m">—</div>
+        </div>
+        <div class="ctx-card">
+          <div class="ctx-card-label">model</div>
+          <div class="ctx-card-val" id="ctx-model">gemini-2.5-flash</div>
+        </div>
+        <div class="ctx-card">
+          <div class="ctx-card-label">session</div>
+          <div class="ctx-card-val" id="ctx-session">—</div>
+        </div>
+      </div>
+
+      <!-- Neural -->
+      <div class="rp-s" style="margin-top:10px">
+        <div class="rp-l">Neural</div>
+        <div class="cr">
+          <span class="ck">activity</span>
+          <div class="n-bars">
+            <div class="nb-seg"></div><div class="nb-seg"></div>
+            <div class="nb-seg"></div><div class="nb-seg"></div>
+            <div class="nb-seg off"></div><div class="nb-seg off"></div>
+          </div>
+        </div>
+        <div class="cr"><span class="ck">cpu</span><span class="cv" id="rpc">—</span></div>
+        <div class="cr"><span class="ck">ram</span><span class="cv" id="rpr">—</span></div>
+        <div class="cr"><span class="ck">voice</span><span class="cv c" id="rp-voice">ready</span></div>
+      </div>
+
+      <!-- Tasks -->
+      <div class="rp-s" style="margin-top:10px">
+        <div class="rp-l">Tasks</div>
+        <div id="tareas-list">
+          <div class="rp-empty">cargando...</div>
+        </div>
+      </div>
+
+      <!-- Recordatorios -->
+      <div class="rp-s" style="margin-top:10px;padding-bottom:12px">
+        <div class="rp-l">Recordatorios</div>
+        <div id="recordatorios-list">
+          <div class="rp-empty">cargando...</div>
+        </div>
+      </div>
+
+      <!-- Nueva conv -->
+      <div class="rp-s" style="padding-bottom:18px">
+        <button class="btn-nueva-conv" id="btn-nueva-conv" onclick="iniciarDesdeHome()">
+          <i class="ti ti-plus"></i> Nueva conversación
+        </button>
+      </div>
+
+    </div><!-- /#rp-main -->
+
+  </div><!-- /.body -->
+</div><!-- /.shell -->
+
+<!-- ══ VOICE FLOAT ══ — ids conservados para zelic.js -->
+<div class="vf" id="vf">
+  <div class="vf-orb">
+    <div class="vfr a"></div>
+    <div class="vfr b"></div>
+    <div class="vfr c"></div>
+    <div class="vf-bead"></div>
+  </div>
+  <div class="vf-proc" id="vf-proc">ESCUCHANDO</div>
+  <div class="vf-wave" id="vf-wave"></div>
+  <div class="vf-analyzing" id="vf-analyzing">habla cuando quieras</div>
+  <div class="vf-x" id="vfx">cerrar sesión de voz</div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div id="toast" class="toast" role="alert" aria-live="assertive">
+  <div class="toast-icon"><span class="c">◆</span></div>
+  <div class="toast-body">
+    <div class="toast-title">Recordatorio</div>
+    <div class="toast-msg" id="toast-msg"></div>
+  </div>
+  <div class="toast-close" id="toast-close">✕</div>
+</div>
+
+<script src="{{ url_for('static', filename='js/zelic.js') }}"></script>
+</body>
+</html>

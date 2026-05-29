@@ -1,0 +1,25 @@
+ZELIC/
+├── interfaz.py          ← punto de entrada principal
+├── orquestador.py       ← clasifica intención del mensaje
+├── memoria_simple.py    ← memoria con resumen automático
+├── ventana_voz.py       ← ventana Jarvis animada (círculo azul)
+├── database.py          ← funciones SQLite
+├── core/
+│   ├── chat.py          ← conversación con Gemini
+│   ├── tareas.py        ← tareas y recordatorios
+│   ├── clima.py         ← clima con wttr.in
+│   ├── sistema.py       ← abrir apps/URLs/explorar archivos
+│   ├── sistema_info.py  ← métricas CPU/RAM/GPU
+│   ├── documento.py     ← analizar PDFs
+│   ├── imagen.py        ← generar imágenes
+│   ├── saludo.py        ← saludo personalizado al iniciar
+│   ├── vision_pantalla.py ← ver pantalla con Gemini Vision
+│   ├── voz.py           ← Gemini Live API (modo voz)
+│   ├── voz_stt.py       ← STT con speech_recognition (backup)
+│   └── voz_tts.py       ← edge-tts para hablar
+├── CONFIG/
+│   └── config.py        ← API_KEY desde .env con load_dotenv
+└── data/
+    ├── zelic.db
+    ├── zelic_memoria.json
+    └── imagenes/
