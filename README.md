@@ -1,34 +1,42 @@
 # santiagodiaz.github.io
 
-👋 Hola, soy Santiago
+# 👋 Hola, soy Santiago
 
-Tengo 16 años y soy estudiante de programación de software en el SENA.
+Tengo 16 años y soy desarrollador en formación, creador de proyectos tecnológicos y estudiante de programación de software.
 
-Me apasiona la tecnología, la inteligencia artificial y la creación de herramientas que resuelvan problemas reales. Mi forma favorita de aprender es construyendo proyectos, enfrentando desafíos y convirtiendo ideas en soluciones funcionales.
+Mi interés por la tecnología no comenzó cuando aprendí a programar. Comenzó mucho antes.
 
-Actualmente estoy desarrollando **Zelic**, un asistente impulsado por IA diseñado para ayudar a las personas y explorar nuevas formas de interacción entre humanos y sistemas inteligentes.
+Desde niño me fascinaba entender cómo funcionaban las cosas. Me gustaba desarmar y volver a ensamblar dispositivos, experimentar con tecnología y crear mis propios proyectos. Mientras otros jugaban videojuegos, muchas veces yo intentaba construirlos. Llegué a crear juegos interactivos en PowerPoint simplemente por curiosidad y por las ganas de transformar ideas en algo que otras personas pudieran usar.
 
-## 🚀 Lo que estoy construyendo
+A los 12 años ya participaba en transmisiones en vivo de eventos deportivos. No tenía los mejores equipos ni la mejor calidad, pero sí algo que sigue acompañándome hoy: la obsesión por aprender, mejorar y construir.
 
-* Desarrollo de software y aplicaciones.
-* Proyectos relacionados con inteligencia artificial.
-* Herramientas para automatización y productividad.
-* Soluciones tecnológicas para eventos deportivos.
-* Mi portafolio personal como desarrollador.
+Con el tiempo esa curiosidad evolucionó hacia el desarrollo de software, la inteligencia artificial, la automatización y la creación de herramientas para resolver problemas reales.
 
-## 🏆 Experiencia y proyectos
+## 🚀 Lo que hago actualmente
 
-Además del desarrollo de software, participo en la producción y transmisión de eventos deportivos de patinaje de velocidad junto a mi padre, donde he aprendido sobre tecnología, organización, resolución de problemas y trabajo bajo presión.
+* Desarrollo software y aplicaciones.
+* Construyo proyectos relacionados con inteligencia artificial.
+* Diseño herramientas de automatización.
+* Participo en la producción y transmisión de eventos deportivos.
+* Desarrollo Zelic, un proyecto de asistente impulsado por IA.
 
-A lo largo de estos años he trabajado en proyectos de programación, automatización y herramientas digitales, siempre con el objetivo de aprender algo nuevo y mejorar mis habilidades.
+## 🧠 Mi filosofía
 
-## 🎯 Mi objetivo
+No me interesa únicamente aprender tecnología.
 
-Mi meta es construir tecnología que genere impacto real.
+Me interesa construir cosas.
 
-No busco únicamente escribir código. Me interesa entender problemas, diseñar soluciones y crear productos que aporten valor a las personas.
+Disfruto enfrentando problemas difíciles, aprendiendo nuevas habilidades y convirtiendo ideas en proyectos reales.
 
-Actualmente estoy enfocado en fortalecer mis conocimientos en programación, inteligencia artificial y desarrollo de software mientras construyo proyectos que me permitan crecer profesionalmente.
+Creo que las mejores oportunidades aparecen cuando alguien decide crear una solución en lugar de esperar a que otro la construya.
+
+## 🎯 Mi visión
+
+Mi objetivo es construir tecnología con impacto real.
+
+Quiero desarrollar productos, sistemas e ideas que ayuden a las personas, mientras continúo creciendo como desarrollador, emprendedor y creador.
+
+Actualmente estoy construyendo las bases de ese camino mediante proyectos reales, aprendizaje constante y la búsqueda de desafíos cada vez más grandes.
 
 ## 📚 Actualmente aprendiendo
 
@@ -41,7 +49,8 @@ Actualmente estoy enfocado en fortalecer mis conocimientos en programación, int
 
 ## 🤝 Conectemos
 
-Siempre estoy abierto a colaborar en proyectos, aprender cosas nuevas y conocer personas apasionadas por la tecnología.
+Siempre estoy abierto a colaborar, aprender y compartir ideas con personas apasionadas por la tecnología.
 
-Si llegaste hasta aquí, gracias por visitar mi perfil.
-El mejor proyecto que construiré siempre será el próximo.
+Este perfil es una colección de los proyectos que he construido hasta ahora.
+
+Y apenas estoy comenzando.
