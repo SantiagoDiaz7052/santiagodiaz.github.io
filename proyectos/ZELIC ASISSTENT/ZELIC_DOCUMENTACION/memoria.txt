@@ -1,0 +1,32 @@
+La implementación de resúmenes automáticos (3:00 - 8:45) es una técnica clave para gestionar la memoria de los agentes de IA, evitando que la ventana de contexto se sature con información irrelevante o antigua. Aquí te explico paso a paso su funcionamiento técnico:
+
+Definición de límites: Se establecen dos parámetros fundamentales en la configuración: un límite máximo de mensajes (ej. 12) y una cantidad específica de mensajes a resumir cuando se alcance dicho tope (ej. 6). Esto permite controlar cuánto espacio ocupa la memoria de corto plazo.
+
+Activación del proceso: Cuando el historial de conversación supera el límite establecido, el agente no simplemente borra los mensajes antiguos, sino que dispara un proceso de resumen. En ese momento, se seleccionan los n mensajes más antiguos del historial.
+
+Generación del resumen: Se envía una instrucción (prompt) a un modelo de lenguaje (que puede ser el mismo u otro diferente al de la conversación) con la siguiente información:
+
+El resumen previo (si existe).
+Los nuevos mensajes antiguos que se han acumulado.
+Instrucciones para extraer datos clave, como nombres, preferencias, acuerdos o fechas, manteniendo el contenido compacto.
+Actualización de la memoria: Una vez generado el nuevo resumen, este se almacena en una variable dedicada. El historial de corto plazo se actualiza eliminando los mensajes antiguos ya procesados y conservando únicamente los mensajes más recientes.
+
+Contexto para el modelo: En cada nueva interacción, el agente envía al modelo tanto el resumen acumulado como los mensajes más recientes de corto plazo. De esta forma, el agente mantiene una "memoria histórica" coherente sin necesidad de procesar todo el historial original, logrando una eficiencia óptima en el uso de tokens.
+
+
+#######################################################################################################################################################################################################3
+
+La memoria de largo plazo, explicada en el video, funciona mediante la implementación de una herramienta especializada que permite al agente almacenar información relevante de manera persistente fuera de la memoria volátil del programa (9:00 - 10:00). El proceso detallado es el siguiente:
+
+Configuración del almacenamiento: Se utiliza una base de datos externa, como PostgreSQL a través de Supabase, donde se crea una tabla específica (llamada 'Memories') para registrar los datos (9:48 - 10:15).
+Integración como herramienta: El agente recibe instrucciones en su system prompt indicando que cuenta con una herramienta para guardar memorias importantes. El agente debe decidir, basándose en el contexto de la conversación, cuándo una información es digna de ser preservada (11:09 - 11:47).
+Lógica de almacenamiento: Cuando el modelo determina que el usuario ha compartido un dato relevante (como su nombre o preferencias), invoca la herramienta definida. Esta ejecuta una función de inserción que envía la información a la base de datos (11:42 - 11:51).
+Recuperación de contexto: Para que el agente sea consistente a través de diferentes sesiones, se incluye una función que consulta las memorias almacenadas en la base de datos y las entrega al modelo como parte del contexto, dando prioridad a las entradas más recientes (10:35 - 10:55).
+Este enfoque permite que, incluso si el programa se detiene o se reinicia, la información esencial persista y pueda ser consultada por el agente en futuras interacciones (12:26 - 12:51).
+
+
+
+
+
+
+
