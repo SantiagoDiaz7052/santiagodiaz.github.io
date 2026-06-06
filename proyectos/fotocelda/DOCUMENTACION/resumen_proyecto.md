@@ -2,7 +2,7 @@
 **Proyecto personal — Patinaje artístico**
 
 ## Descripción
-Desarrollo de un sistema completo de cronometraje deportivo para eventos de patinaje artístico, integrando hardware de fotocelda física con una interfaz web moderna y transmisión en vivo por OBS.
+Desarrollo de un sistema completo de cronometraje deportivo para eventos de patinaje de velocidad, integrando hardware de fotocelda física con una interfaz web moderna y transmisión en vivo por OBS.
 
 ## Problema a resolver
 El sistema de cronometraje existente (software propietario "Competition Time") era obsoleto, inestable y no permitía integración con producción de video. Se necesitaba una solución moderna que:
