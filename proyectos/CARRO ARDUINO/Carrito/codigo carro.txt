@@ -1,0 +1,83 @@
+#include <ESP8266WiFi.h>
+
+// --- Configuración del Wi-Fi del carro ---
+const char* ssid = "Carro";     // Nombre de la red que creará
+const char* password = "12345678";      // Contraseña
+
+WiFiServer server(80);
+
+// --- Pines de motores ---
+#define IN1 D5
+#define IN2 D6
+#define IN3 D7
+#define IN4 D4
+
+void setup() {
+  Serial.begin(115200);
+
+  // Crear la red Wi-Fi
+  WiFi.softAP(ssid, password);
+  IPAddress IP = WiFi.softAPIP();
+  Serial.print("Red creada: ");
+  Serial.println(ssid);
+  Serial.print("IP del carro: ");
+  Serial.println(IP);
+
+  // Pines del motor
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+
+  server.begin();
+}
+
+void loop() {
+  WiFiClient client = server.available();
+
+  if (!client) return;  // Si no hay cliente, salir
+
+  Serial.println("Cliente conectado!");
+
+  while (client.connected()) {
+    if (client.available()) {
+      String command = client.readStringUntil('\n');
+      command.trim();
+
+      if (command == "F") {       // Adelante
+        digitalWrite(IN1, HIGH);
+        digitalWrite(IN2, LOW);
+        digitalWrite(IN3, HIGH);
+        digitalWrite(IN4, LOW);
+      } 
+      else if (command == "B") {  // Atrás
+        digitalWrite(IN1, LOW);
+        digitalWrite(IN2, HIGH);
+        digitalWrite(IN3, LOW);
+        digitalWrite(IN4, HIGH);
+      } 
+      else if (command == "L") {  // Izquierda
+        digitalWrite(IN1, LOW);
+        digitalWrite(IN2, HIGH);
+        digitalWrite(IN3, HIGH);
+        digitalWrite(IN4, LOW);
+      } 
+      else if (command == "R") {  // Derecha
+        digitalWrite(IN1, HIGH);
+        digitalWrite(IN2, LOW);
+        digitalWrite(IN3, LOW);
+        digitalWrite(IN4, HIGH);
+      } 
+      else if (command == "S") {  // Stop
+        digitalWrite(IN1, LOW);
+        digitalWrite(IN2, LOW);
+        digitalWrite(IN3, LOW);
+        digitalWrite(IN4, LOW);
+      }
+    }
+    delay(10);
+  }
+
+  Serial.println("Cliente desconectado!");
+  client.stop();
+}

@@ -76,3 +76,16 @@ PC Transmisión
 
 ## Resultado
 Sistema funcional en producción, capaz de detectar el corte del rayo infrarrojo en menos de **300ms** y actualizar el overlay de transmisión automáticamente con el tiempo exacto de la fotocelda.
+
+#######################################################################################################################################
+
+LO QUE APRENDI: 
+
+Ingeniería inversa con Wireshark.
+Redes UDP.
+Python asíncrono.
+WebSockets.
+Desarrollo web.
+Integración con hardware.
+OBS Studio.
+Uso en un entorno real.
