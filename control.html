@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Control Fotocelda</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@600;700&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Rajdhani', sans-serif;
+    background: #0d0d10;
+    color: #eee;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 24px 16px;
+  }
+
+  h1 { font-size: 16px; letter-spacing: 5px; color: #555; }
+
+  /* Conexión */
+  .conn { display: flex; gap: 8px; }
+  .conn input {
+    background: #1a1a1a; border: 1px solid #333; color: #eee;
+    padding: 8px 12px; border-radius: 6px;
+    font-family: 'Share Tech Mono', monospace; font-size: 13px; width: 230px;
+  }
+  .conn button {
+    background: #1a1a1a; border: 1px solid #444; color: #eee;
+    padding: 8px 16px; border-radius: 6px; cursor: pointer;
+    font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 600;
+  }
+  .conn button:hover { background: #252525; }
+
+  /* Status */
+  .status {
+    font-size: 12px; padding: 5px 18px; border-radius: 20px;
+    border: 1px solid #333; color: #555; letter-spacing: 2px;
+    font-weight: 600;
+  }
+  .status.ok  { border-color: #22c55e; color: #22c55e; }
+  .status.err { border-color: #ef4444; color: #ef4444; }
+
+  /* Cronómetro */
+  .clock-wrap {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 28px 40px 22px;
+    text-align: center;
+    min-width: 340px;
+  }
+
+  .clock-label {
+    font-size: 10px; letter-spacing: 4px; color: #444;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+
+  .clock {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 72px;
+    line-height: 1;
+    color: #eee;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+  }
+  .clock.running { color: #22c55e; }
+  .clock.stopped { color: #ef4444; }
+
+  .clock-ms {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 26px;
+    color: #444;
+    margin-top: 4px;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+  }
+  .clock-ms.running { color: #16a34a; }
+  .clock-ms.stopped { color: #b91c1c; }
+
+  /* Botones principales */
+  .buttons { display: flex; gap: 14px; }
+
+  .btn {
+    width: 108px; height: 108px;
+    border-radius: 12px;
+    border: 2px solid #333;
+    background: #111;
+    color: #555;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px; font-weight: 700; letter-spacing: 2px;
+    cursor: pointer;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px;
+    transition: all 0.15s;
+  }
+  .btn svg { width: 28px; height: 28px; }
+  .btn:hover:not(:disabled) { transform: translateY(-2px); }
+  .btn:active:not(:disabled) { transform: scale(0.96); }
+  .btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+  .btn.start { border-color: #16a34a; color: #22c55e; }
+  .btn.start:hover:not(:disabled) { background: #052e16; }
+  .btn.stop  { border-color: #b91c1c; color: #ef4444; }
+  .btn.stop:hover:not(:disabled)  { background: #2d0a0a; }
+  .btn.reset { border-color: #1d4ed8; color: #60a5fa; }
+  .btn.reset:hover:not(:disabled) { background: #0c1a3a; }
+
+  /* Log */
+  .log {
+    background: #111; border: 1px solid #1e1e1e;
+    border-radius: 8px; padding: 10px 14px;
+    width: 340px; max-height: 120px; overflow-y: auto;
+    font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #444;
+  }
+  .log div { padding: 2px 0; border-bottom: 1px solid #191919; }
+  .log .ok  { color: #22c55e; }
+  .log .err { color: #ef4444; }
+  .log .info { color: #60a5fa; }
+
+  .hint { font-size: 11px; color: #333; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<h1>CONTROL FOTOCELDA</h1>
+
+<div class="conn">
+  <input id="ws-url" placeholder="ws://IP:8765" />
+  <button onclick="conectar()">Conectar</button>
+</div>
+
+<div class="status err" id="status">● DESCONECTADO</div>
+
+<div class="clock-wrap">
+  <div class="clock-label">Tiempo en curso</div>
+  <div class="clock" id="clock">00:00</div>
+  <div class="clock-ms" id="clock-ms">.000</div>
+</div>
+
+<div class="buttons">
+  <button class="btn start" id="b-start" onclick="cmd('START')" disabled>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="5 3 19 12 5 21 5 3"/>
+    </svg>
+    START
+  </button>
+  <button class="btn stop" id="b-stop" onclick="cmd('STOP')" disabled>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2"/>
+    </svg>
+    STOP
+  </button>
+  <button class="btn reset" id="b-reset" onclick="cmd('RESET')" disabled>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.87"/>
+    </svg>
+    RESET
+  </button>
+</div>
+
+<div class="log" id="log"><div>— esperando conexión —</div></div>
+<div class="hint">1 = START &nbsp;|&nbsp; 2 = STOP &nbsp;|&nbsp; 3 = RESET</div>
+
+<script>
+// ── WebSocket ────────────────────────────────────────
+let ws = null;
+const serverHost = location.hostname || "localhost";
+document.getElementById('ws-url').value = `ws://${serverHost}:8765`;
+
+function addLog(msg, cls) {
+  const box = document.getElementById('log');
+  const d = document.createElement('div');
+  if (cls) d.className = cls;
+  const t = new Date().toLocaleTimeString('es', {hour12: false});
+  d.textContent = `[${t}] ${msg}`;
+  box.insertBefore(d, box.firstChild);
+  if (box.children.length > 30) box.removeChild(box.lastChild);
+}
+
+function setConnected(ok) {
+  const s = document.getElementById('status');
+  s.textContent = ok ? '● CONECTADO' : '● DESCONECTADO';
+  s.className = 'status ' + (ok ? 'ok' : 'err');
+  ['b-start','b-stop','b-reset'].forEach(id => document.getElementById(id).disabled = !ok);
+}
+
+function conectar() {
+  const url = document.getElementById('ws-url').value.trim();
+  if (ws) { try { ws.close(); } catch(e){} }
+  addLog(`Conectando a ${url}…`);
+  ws = new WebSocket(url);
+  ws.onopen    = () => { setConnected(true);  addLog('Conexión establecida ✓', 'ok'); };
+  ws.onmessage = (e) => {
+    const d = JSON.parse(e.data);
+    if (d.tipo === 'ack') {
+      addLog(`${d.cmd} → ${d.res}`, d.res.startsWith('OK') ? 'ok' : 'err');
+    } else if (d.tipo === 'ok') {
+      addLog(d.msg, 'ok');
+    } else if (d.tipo === 'auto_stop') {
+      running = false;
+      elapsed = d.elapsed;
+      cancelAnimationFrame(raf);
+      tick();
+      setClockStyle('stopped');
+      document.getElementById('b-start').disabled = false;
+      document.getElementById('b-stop').disabled  = true;
+      addLog(`⏱ AUTO-STOP fotocelda → ${d.display}s`, 'ok');
+      if (bc) bc.postMessage({ cmd: 'STOP', elapsed: d.elapsed });
+    }
+  };
+  ws.onerror = () => addLog('Error WebSocket', 'err');
+  ws.onclose = () => { setConnected(false); addLog('Conexión cerrada'); ws = null; };
+}
+
+// ── Cronómetro local ─────────────────────────────────
+let running  = false;
+let startAt  = 0;
+let elapsed  = 0;
+let raf      = null;
+
+// BroadcastChannel para sincronizar con el overlay OBS
+let bc = null;
+try { bc = new BroadcastChannel('cron_patinaje'); } catch(e) {}
+
+function pad(n, w=2) { return String(n).padStart(w, '0'); }
+
+function tick() {
+  const ms  = running ? Date.now() - startAt : elapsed;
+  const sec = Math.floor(ms / 1000);
+  const fra = Math.floor((ms % 1000) / 10);
+
+  document.getElementById('clock').textContent    = `${pad(sec, 2)}`;
+  document.getElementById('clock-ms').textContent = `.${pad(fra, 2)}`;
+
+  if (running) raf = requestAnimationFrame(tick);
+}
+
+function setClockStyle(state) {
+  document.getElementById('clock').className    = 'clock '    + (state === 'running' ? 'running' : state === 'stopped' ? 'stopped' : '');
+  document.getElementById('clock-ms').className = 'clock-ms ' + (state === 'running' ? 'running' : state === 'stopped' ? 'stopped' : '');
+}
+
+function cronStart() {
+  if (running) return;
+  running = true;
+  startAt = Date.now() - elapsed;
+  setClockStyle('running');
+  raf = requestAnimationFrame(tick);
+  if (bc) bc.postMessage({ cmd: 'START', elapsed });
+}
+
+function cronStop() {
+  if (!running) return;
+  running = false;
+  elapsed = Date.now() - startAt;
+  cancelAnimationFrame(raf);
+  tick();
+  setClockStyle('stopped');
+  if (bc) bc.postMessage({ cmd: 'STOP', elapsed });
+}
+
+function cronReset() {
+  running = false;
+  elapsed = 0;
+  cancelAnimationFrame(raf);
+  tick();
+  setClockStyle('');
+  if (bc) bc.postMessage({ cmd: 'RESET' });
+}
+
+// ── Comando unificado (UDP + cronómetro) ─────────────
+function cmd(c) {
+  // 1) UDP via WebSocket
+  if (ws && ws.readyState === 1) {
+    ws.send(JSON.stringify({ cmd: c }));
+  } else {
+    addLog('Sin conexión al bridge — solo cronómetro local', 'err');
+  }
+
+  // 2) Cronómetro local
+  if      (c === 'START') cronStart();
+  else if (c === 'STOP')  cronStop();
+  else if (c === 'RESET') cronReset();
+
+  addLog(c, 'info');
+}
+
+// ── Teclado ──────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === '1') cmd('START');
+  else if (e.key === '2') cmd('STOP');
+  else if (e.key === '3') cmd('RESET');
+});
+
+tick();
+</script>
+</body>
+</html>

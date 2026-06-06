@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>OBS Overlay</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@700&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background: transparent; width: 400px; overflow: hidden; }
+
+.overlay-wrap { position: relative; width: 400px; }
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2px;
+  margin-bottom: 3px;
+}
+.top-left {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #444;
+}
+.top-left span { color: #666; }
+.top-right {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.corner {
+  position: absolute;
+  width: 14px; height: 14px;
+  border-color: #555;
+  border-style: solid;
+  border-width: 0;
+  transition: border-color 0.3s;
+  z-index: 2;
+}
+.corner.tl { top: 0; left: 0;   border-top-width: 2px; border-left-width: 2px; }
+.corner.tr { top: 0; right: 0;  border-top-width: 2px; border-right-width: 2px; }
+.corner.bl { bottom: 0; left: 0;  border-bottom-width: 2px; border-left-width: 2px; }
+.corner.br { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
+
+.running .corner { border-color: #22c55e; }
+.stopped .corner { border-color: #ef4444; }
+.listo   .corner { border-color: #555; }
+
+.overlay-inner {
+  background: rgba(0,0,0,0.78);
+  border: 0.5px solid rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 14px 20px 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.left-bar {
+  width: 3px; height: 52px;
+  border-radius: 2px;
+  background: #555;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+.running .left-bar { background: #22c55e; }
+.stopped .left-bar { background: #ef4444; }
+
+.time-block { flex: 1; }
+
+.time-row {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  line-height: 1;
+}
+
+.t-main {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 52px;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.t-frac {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 22px;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+.badge {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #444;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.running .badge { color: #22c55e; }
+.stopped .badge { color: #ef4444; }
+
+.bdot { width:5px; height:5px; border-radius:50%; background:currentColor; }
+.running .bdot { animation: blink 1s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+</style>
+</head>
+<body>
+
+<div class="overlay-wrap listo" id="ow">
+  <div class="top-bar">
+    <div class="top-left"><span>Cronodeportivo.com</span> — Tiempo en vivo</div>
+    <div class="top-right">Tiempo</div>
+  </div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+  <div class="overlay-inner">
+    <div class="left-bar"></div>
+    <div class="time-block">
+      <div class="time-row">
+        <span class="t-main" id="tm">00</span>
+        <span class="t-frac" id="tf">.00</span>
+      </div>
+      <div class="badge">
+        <span class="bdot"></span>
+        <span id="btxt">Listo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let running=false, startAt=0, elapsed=0, raf=null;
+const pad=(n,w=2)=>String(n).padStart(w,'0');
+
+function tick() {
+  const ms  = running ? Date.now()-startAt : elapsed;
+  const sec = Math.floor(ms/1000);
+  const fra = Math.floor((ms%1000)/10);
+  document.getElementById('tm').textContent = pad(sec);
+  document.getElementById('tf').textContent = '.'+pad(fra);
+  if (running) raf = requestAnimationFrame(tick);
+}
+
+function setState(s) {
+  const ow  = document.getElementById('ow');
+  const txt = document.getElementById('btxt');
+  ow.className = 'overlay-wrap ' + s;
+  const labels = { running:'Corriendo', stopped:'Detenido', listo:'Listo' };
+  txt.textContent = labels[s] || 'Listo';
+}
+
+const host = new URLSearchParams(location.search).get('host') || location.hostname || 'localhost';
+const ws = new WebSocket(`ws://${host}:8765`);
+
+ws.onmessage = ({ data }) => {
+  const d = JSON.parse(data);
+  if (d.tipo === 'sync' || d.tipo === 'cron') {
+    const offset = d.server_time ? (Date.now() - d.server_time) : 0;
+    if (d.fase === 'corriendo' || d.estado === 'corriendo') {
+      running = true;
+      startAt = d.start_at + offset;
+      setState('running');
+      if (!raf) raf = requestAnimationFrame(tick);
+    } else if (d.fase === 'detenido' || d.estado === 'detenido') {
+      running = false;
+      elapsed = d.elapsed;
+      cancelAnimationFrame(raf); raf = null;
+      tick(); setState('stopped');
+    } else {
+      running = false; elapsed = 0;
+      cancelAnimationFrame(raf); raf = null;
+      tick(); setState('listo');
+    }
+  } else if (d.tipo === 'auto_stop') {
+    running = false;
+    elapsed = d.elapsed;
+    cancelAnimationFrame(raf); raf = null;
+    tick(); setState('stopped');
+  }
+};
+
+ws.onclose = () => { setState('listo'); document.getElementById('btxt').textContent = 'Sin conexión'; };
+
+tick();
+</script>
+</body>
+</html>
