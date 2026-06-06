@@ -1,5 +1,5 @@
 # Sistema de Cronometraje Deportivo en Tiempo Real
-**Proyecto personal — Patinaje artístico**
+**Proyecto personal — Patinaje de VELOCDIAD**
 
 ## Descripción
 Desarrollo de un sistema completo de cronometraje deportivo para eventos de patinaje de velocidad, integrando hardware de fotocelda física con una interfaz web moderna y transmisión en vivo por OBS.
