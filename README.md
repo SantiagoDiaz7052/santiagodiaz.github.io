@@ -57,6 +57,7 @@ Este perfil es una colección de los proyectos que he construido hasta ahora.
 
 Y apenas estoy comenzando.
 
-## MIRA MI PORTAFOLIO WEB ;)
+##
+# MIRA MI PORTAFOLIO WEB ;)
 
 https://santiagodiaz7052.github.io/santiagodiaz.github.io/
