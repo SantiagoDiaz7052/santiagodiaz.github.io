@@ -1,0 +1,53 @@
+{
+  "resumen": "",
+  "memoria": [
+    {
+      "role": "model",
+      "text": "🎙 Listo. ¿Qué más necesitas?"
+    },
+    {
+      "role": "user",
+      "text": "Pue des ab rir en mi na ve ga dor A pis y servi cio s."
+    },
+    {
+      "role": "model",
+      "text": "🎙 ¿A qué URL te refieres con \"Apis y servicios\"? Necesito una dirección"
+    },
+    {
+      "role": "user",
+      "text": "A qué UR L te re fiere s con A PI s y servi cio s ? Ne cesito una dire cción ."
+    },
+    {
+      "role": "user",
+      "text": "e s de clo ud . goo gle ."
+    },
+    {
+      "role": "model",
+      "text": "🎙 Entendido. Abriendo cloud.google.com/apis."
+    },
+    {
+      "role": "user",
+      "text": "En te ndi do , ab ri endo clo ud . goo gle . com /"
+    },
+    {
+      "role": "model",
+      "text": "🎙 Me temo que la URL no está completa, usuario. ¿Podrías proporcionarme"
+    },
+    {
+      "role": "user",
+      "text": "Me te mo che la UR L no está comp leta , usu ario . Po drías mi no mbre es Santiago para que lo guar da s en tu me moria ."
+    },
+    {
+      "role": "model",
+      "text": "🎙 Anote su nombre, Santiago. ¿Cuál era la URL completa?"
+    },
+    {
+      "role": "user",
+      "text": "Ano té su no mbre Santiago . ¿ Cuál era la UR L comp leta ? No , ya , ca nce la, dé ja la va ina s a hí ."
+    },
+    {
+      "role": "model",
+      "text": "🎙 Como ordene, Santiago. ¿Hay algo más que pueda hacer por usted?"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+cd "C:\Users\Santiago Diaz\Desktop\CRONOMETRAJE\FOTOCELDA"
+venv\Scripts\activate
+python bridge.py
+
+cd "C:\Users\Santiago Diaz\Desktop\CRONOMETRAJE\FOTOCELDA"
+python -m http.server 3000
+
+192.168.0.50
+
+http://IP-DE-TU-PC:3000/control.html
