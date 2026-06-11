@@ -48,4 +48,6 @@ hoy queria hacer algo diferente por que me siemto frustrado, ademas de zelic ten
 
 quiero ver si puedo arreglar definitvamente la memoria para crear la base de datos
 
-##
+## 11 - 06 -2026
+
+hoy quiero hacer la memoria lo mas simple posible, para asi poder empezar a construir una estructura fuerte
