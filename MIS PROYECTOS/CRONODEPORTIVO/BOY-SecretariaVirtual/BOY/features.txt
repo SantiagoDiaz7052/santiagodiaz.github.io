@@ -1,0 +1,32 @@
+=============================================================
+=                                                           =
+=                   IMPLEMETACIONES BOY                     =
+=                                                           =
+=============================================================
+
+1, para registrarse 1 hay que pagar
+
+2, establecer unas reglas para el registro de un deportista (un id unico generado aleatoriomente)
+
+3, cuando se desee hablar con ivonn se genere una notificacion7
+
+##################
+
+QUE PUEDE HACER BOY::
+
+dar info
+
+inscripciones
+
+, aparte
+
+TRAMITAR PAGOS
+
+unir la copa con BOY
+
+###########################################################################################################
+
+wompi < nequi 
+mediante los comprobantes que da nequi
+
+####################################################
