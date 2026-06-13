@@ -27,4 +27,11 @@ Estado
 
 🔧 Proyecto experimental / prototipo funcional.
 
+morado =    gnd
+rojo =      5v
+cafe =    digital6
+naranga = digatal 7
+blanco =  digital 8
+verde =   digital 9
+
 Imágenes:
