@@ -1,12 +1,12 @@
 ¡Hola!, bienvenido a mis bitacoras durante el desarrollo de zelic, aqui estara toda la historria de zelic ordenada, con eso en un futuro podre decir: "wow, como he avanzado". No siendo más, empezemos con el contexto
 
-# Contexto
+# Contexto - 
 
 Todo empezo cuando me cambie de colegio, a uno que me ofrecia salir tecnico del SENA en software, al principio dude, pero despues encontre una de las cosas que más me gusta, la posibilidad de ponerte problemas dificiles y proponerte a cumplirlos por ti mismo.
 
 Despues tocaba asignar grupos de trabajo para empezar hacer el proyecto, pero aqui pasa algo curioso..., tenia 2 opciones, hacerme con los mas inteligentes o hacerme con un grupo que ni siquiera sabe que es un "hola mundo", y adivinen que, como a mi me gustan los retos deificiles y ponerme a prueba elegi el grupo regular. ahi tuve varias ideas, se me ocurrio un una "red social" dentro del colegio para gente introvertida, sin embargo se descarto rapidamente, ya que lo concideraron un "tinder". 
 
-# la idea
+# la idea (5 de mayo del 2025)
 
 Despues surgio una idea de un libro catalogado "zelic", unos de los mejores libros que me he leido y me dio la curiosidad de hacer una ia capaz de entender y responder. pero mi ambicion queria más...
 
