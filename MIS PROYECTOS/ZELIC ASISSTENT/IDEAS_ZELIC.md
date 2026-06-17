@@ -1,3 +1,9 @@
+Hola esto es zelic, aqui estara la historia de la creacion de este gran proyecto
+
+
+## ideas zelic
+
+
 clima
 leer estado de pc
 escribir
@@ -28,6 +34,9 @@ tareas == recordatorios, y que mustre los proximos a cumplirse, ademas una venta
 
 ### arreglar coherecnia peticion de sistema del usuario
 
+
+########## SONIDOOOOOOS #
+
 #########################################################################
 
 ERRRORES
@@ -48,6 +57,18 @@ rediseñar el panel lateral + correcion de memoria  (dbl hp)
 orquestador no -> mejor que zelic tome la mejor decision
 
 ## autimatizaciones
+
+## DEJA DE GUARDAR EL NOMBRE DE LA CONVERSACION (CUANDO PASA ESO ES QUE ALGO DE MEMORIA SE DAÑO)(ADEMAS SE MULTIPLICAN LOS MENSAJES)
+
+## se demora en la 1 respuesta de el .voz
+
+## no hay relacion entre chats
+
+## recordar solo cosas importantes
+
+
+sonidos de generacion, y que hable constantemente
+
 
 #######################################
 

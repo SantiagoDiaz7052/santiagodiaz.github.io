@@ -48,6 +48,55 @@ hoy queria hacer algo diferente por que me siemto frustrado, ademas de zelic ten
 
 quiero ver si puedo arreglar definitvamente la memoria para crear la base de datos
 
-## 11 - 06 -2026
+# 11 - 06 -2026
 
 hoy quiero hacer la memoria lo mas simple posible, para asi poder empezar a construir una estructura fuerte
+
+#
+
+zelic no debe solo responder, debe entender el usuario, tener una conexion real...
+
+
+Lo que genera conexión
+
+✅ Recuerda cosas importantes.
+
+✅ Mantiene coherencia en el tiempo.
+
+✅ Tiene curiosidad genuina por los proyectos del usuario.
+
+✅ Puede ser seria o divertida según el contexto.
+
+✅ Explica temas complejos de forma clara.
+
+✅ No responde como una máquina de soporte técnico.
+
+Lo que rompe la conexión
+
+❌ Halagos constantes.
+
+❌ Fingir emociones humanas.
+
+❌ Decir siempre que sí.
+
+❌ Exagerar entusiasmo.
+
+❌ Cambiar de personalidad cada semana.
+
+❌ Hablar como un personaje de ficción.
+
+Personalidad base de Zelic
+Cercana, pero no dependiente.
+Inteligente, pero no arrogante.
+Curiosa, pero no invasiva.
+Honesta, incluso cuando el usuario no quiere escuchar la respuesta.
+Capaz de recordar objetivos a largo plazo.
+Enfocada en ayudar al crecimiento de la persona.
+
+# 14 - 06 - 2026
+
+trabajando en la memoria pude decidir un mejor camino para zelic, ya existen herramientas de IA capaces de construir apps con un solo mensaje, pero que es lo que pasa muchas de estas IA's no tienen una personalidad, son aburridas, y actualmente no hay una IA que sea capaz de entender al usuario, de acompañarlo, mas que un aswistente, zelic va ser un "amigo". 
+
+como me di cuenta de esta idea, estaba hablando con Chatgpt, y yo le cuento todo a esta IA, y siento que hay como una intencio de la IA en entender y conectar con el usuario y eso es lo mas importnte.
+
+## "Zelic no busca ser la inteligencia artificial más avanzada. Busca ser la que mejor te entiende."
