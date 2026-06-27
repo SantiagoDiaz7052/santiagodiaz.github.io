@@ -1,101 +1,242 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Santiago Díaz | Portafolio</title>
-  <style>
-    body{
-      font-family: Arial;
-      max-width: 900px;
-      margin:auto;
-      padding:40px;
-      background:#f7f7f7;
-      color:#222;
+import { useState } from 'react';
+import { motion } from 'motion/react';
+import { Sparkles, Bot, Radio, Timer, Cpu, Wrench, Calendar, Video, Moon, Sun, Github, Linkedin, Mail } from 'lucide-react';
+
+export default function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const projects = [
+    {
+      id: 1,
+      title: "Zelic",
+      description: "Asistente con IA enfocado en la productividad y automatización.",
+      icon: Sparkles,
+      gradient: "from-purple-500 via-pink-500 to-red-500",
+      bgPattern: "radial-gradient(circle at 20% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 50%)",
+      tags: ["IA", "Productividad", "Automatización"]
+    },
+    {
+      id: 2,
+      title: "StarBOT",
+      description: "La secretaria virtual para clubes deportivos: atención, gestión y automatización por WhatsApp.",
+      icon: Bot,
+      gradient: "from-blue-500 via-cyan-500 to-teal-500",
+      bgPattern: "repeating-linear-gradient(45deg, rgba(6, 182, 212, 0.05) 0px, rgba(6, 182, 212, 0.05) 2px, transparent 2px, transparent 10px)",
+      tags: ["WhatsApp API", "Automatización", "Deportes"]
+    },
+    {
+      id: 3,
+      title: "Sistema de transmisiones deportivas",
+      description: "Sistema técnico para eventos deportivos en tiempo real.",
+      icon: Radio,
+      gradient: "from-orange-500 via-red-500 to-pink-600",
+      bgPattern: "linear-gradient(135deg, rgba(249, 115, 22, 0.08) 25%, transparent 25%)",
+      tags: ["Streaming", "Tiempo Real", "Eventos"]
+    },
+    {
+      id: 4,
+      title: "Creación de cronómetros",
+      description: "Software de fotoceldas para medición precisa de tiempos.",
+      icon: Timer,
+      gradient: "from-green-500 via-emerald-500 to-teal-600",
+      bgPattern: "radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)",
+      tags: ["Hardware", "Precisión", "Deportes"]
+    },
+    {
+      id: 5,
+      title: "Arduino",
+      description: "Conocimiento técnico básico de control y construcción de placas Arduino + Python.",
+      icon: Cpu,
+      gradient: "from-indigo-500 via-purple-500 to-pink-500",
+      bgPattern: "repeating-linear-gradient(90deg, rgba(99, 102, 241, 0.05) 0px, rgba(99, 102, 241, 0.05) 1px, transparent 1px, transparent 20px)",
+      tags: ["IoT", "Python", "Hardware"]
+    },
+    {
+      id: 6,
+      title: "Mantenimiento de computadores",
+      description: "Servicio profesional de mantenimiento y reparación de PCs.",
+      icon: Wrench,
+      gradient: "from-gray-600 via-slate-600 to-zinc-700",
+      bgPattern: "linear-gradient(45deg, rgba(71, 85, 105, 0.08) 25%, transparent 25%)",
+      tags: ["Hardware", "Reparación", "Soporte"]
+    },
+    {
+      id: 7,
+      title: "Gestión de eventos",
+      description: "Gestión de pagos, consultas de bases de datos e inscripciones para eventos.",
+      icon: Calendar,
+      gradient: "from-yellow-500 via-amber-500 to-orange-600",
+      bgPattern: "radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.08) 0%, transparent 50%)",
+      tags: ["BD", "Pagos", "Eventos"]
+    },
+    {
+      id: 8,
+      title: "Publicidad y videos",
+      description: "Creación de publicidad y contenido para redes sociales.",
+      icon: Video,
+      gradient: "from-rose-500 via-fuchsia-500 to-purple-600",
+      bgPattern: "repeating-linear-gradient(135deg, rgba(236, 72, 153, 0.05) 0px, rgba(236, 72, 153, 0.05) 2px, transparent 2px, transparent 12px)",
+      tags: ["Marketing", "Diseño", "Redes Sociales"]
     }
+  ];
 
-    h1{
-      color:#111;
-    }
+  return (
+    <div className={`min-h-screen transition-colors duration-500 ${darkMode ? 'dark bg-gray-950' : 'bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50'}`}>
+      {/* Theme Toggle */}
+      <motion.button
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        onClick={() => setDarkMode(!darkMode)}
+        className={`fixed top-6 right-6 z-50 p-3 rounded-full shadow-lg transition-colors ${
+          darkMode ? 'bg-yellow-400 text-gray-900' : 'bg-gray-900 text-yellow-400'
+        }`}
+      >
+        {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+      </motion.button>
 
-    .card{
-      background:white;
-      padding:20px;
-      border-radius:12px;
-      margin:20px 0;
-      box-shadow:0 4px 12px rgba(0,0,0,.08);
-    }
+      {/* Hero Section */}
+      <div className="container mx-auto px-4 py-20">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
+        >
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            className={`w-32 h-32 rounded-full mx-auto mb-8 bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white text-5xl font-bold shadow-2xl`}
+          >
+            SD
+          </motion.div>
 
-    a{
-      color:#2563eb;
-      text-decoration:none;
-    }
-  </style>
-</head>
-<body>
+          <h1 className={`text-6xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent ${darkMode ? 'opacity-90' : ''}`}>
+            Santiago Díaz
+          </h1>
 
-<h1>Santiago Díaz</h1>
+          <p className={`text-xl mb-8 max-w-2xl mx-auto ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            Desarrollador de software en formación enfocado en inteligencia artificial,
+            educación y proyectos tecnológicos.
+          </p>
 
-<p>
-Desarrollador de software en formación enfocado en inteligencia artificial,
-educación y proyectos tecnológicos.
-</p>
+          <div className="flex gap-4 justify-center">
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://github.com"
+              className={`p-3 rounded-full transition-colors ${
+                darkMode ? 'bg-gray-800 hover:bg-gray-700 text-white' : 'bg-white hover:bg-gray-100 text-gray-900'
+              } shadow-lg`}
+            >
+              <Github className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://linkedin.com"
+              className={`p-3 rounded-full transition-colors ${
+                darkMode ? 'bg-gray-800 hover:bg-gray-700 text-white' : 'bg-white hover:bg-gray-100 text-gray-900'
+              } shadow-lg`}
+            >
+              <Linkedin className="w-6 h-6" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="mailto:santiago@example.com"
+              className={`p-3 rounded-full transition-colors ${
+                darkMode ? 'bg-gray-800 hover:bg-gray-700 text-white' : 'bg-white hover:bg-gray-100 text-gray-900'
+              } shadow-lg`}
+            >
+              <Mail className="w-6 h-6" />
+            </motion.a>
+          </div>
+        </motion.div>
 
-<div class="card">
-  <h2>Zelic</h2>
-  <p>
-    Asistente con IA enfocado en la productividad y automatización.
-  </p>
-</div>
+        {/* Projects Grid */}
+        <motion.h2
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className={`text-4xl font-bold text-center mb-12 ${darkMode ? 'text-white' : 'text-gray-900'}`}
+        >
+          Proyectos
+        </motion.h2>
 
-<div class="card">
-  <h2>StarBOT</h2>
-  <p>
-    La secretaria virtual para clubes deportivos: atención, gestión y automatización por WhatsApp.
-  </p>
-</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {projects.map((project, index) => {
+            const Icon = project.icon;
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * index, duration: 0.5 }}
+                whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                className={`group relative overflow-hidden rounded-2xl p-6 transition-all duration-300 ${
+                  darkMode ? 'bg-gray-900' : 'bg-white'
+                } shadow-xl hover:shadow-2xl`}
+                style={{
+                  background: darkMode
+                    ? `${project.bgPattern}, #111827`
+                    : `${project.bgPattern}, white`
+                }}
+              >
+                {/* Gradient Overlay on Hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
 
-<div class="card">
-  <h2>Sistema de transmisiones deportivas</h2>
-  <p>
-    Sistema desplegado para eventos de patinaje artístico, integrando hardware de cronometraje profesional con overlays en tiempo real para transmisión en vivo mediante OBS Studio.
-  </p>
-</div>
+                {/* Icon with Gradient */}
+                <div className={`relative mb-4 w-16 h-16 rounded-xl bg-gradient-to-br ${project.gradient} p-3 shadow-lg`}>
+                  <Icon className="w-full h-full text-white" />
+                </div>
 
-<div class="card">
-  <h2>creacion de cronometros</h2>
-  <p>
-    software de fotoceldas
-  </p>
-</div>
+                {/* Title */}
+                <h3 className={`relative text-2xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                  {project.title}
+                </h3>
 
-<div class="card">
-  <h2>Arduino</h2>
-  <p>
-    conocimiento tecnico basico de control y construccion de placas arduino + python
-  </p>
-</div>  
-  
-<div class="card">
-  <h2>mantenimientos de computadores</h2>
-  <p>
-    mantenimeto de pcs
-  </p>
-</div>
-  
-<div class="card">
-  <h2>eventos</h2>
-  <p>
-    gestion de pagos y consultas de bases de datos e inscripciones para eventos
-  </p>
-</div>
+                {/* Description */}
+                <p className={`relative mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  {project.description}
+                </p>
 
-<div class="card">
-  <h2>publicidad y videos</h2>
-  <p>
-    creacion de publicidad y contenido para redes sociales
-  </p>
+                {/* Tags */}
+                <div className="relative flex flex-wrap gap-2">
+                  {project.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className={`px-3 py-1 rounded-full text-sm font-medium ${
+                        darkMode
+                          ? 'bg-gray-800 text-gray-300'
+                          : 'bg-gray-100 text-gray-700'
+                      }`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
 
-  
-</div>
-</body>
-</html>
+                {/* Hover Border Effect */}
+                <div
+                  className={`absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-current bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                  style={{
+                    WebkitMaskImage: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    WebkitMaskComposite: 'xor',
+                    maskComposite: 'exclude',
+                    padding: '2px'
+                  }}
+                />
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className={`py-8 text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+        <p>© 2026 Santiago Díaz - Desarrollador en formación</p>
+      </footer>
+    </div>
+  );
+}
