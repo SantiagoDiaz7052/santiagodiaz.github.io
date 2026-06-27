@@ -100,3 +100,8 @@ trabajando en la memoria pude decidir un mejor camino para zelic, ya existen her
 como me di cuenta de esta idea, estaba hablando con Chatgpt, y yo le cuento todo a esta IA, y siento que hay como una intencio de la IA en entender y conectar con el usuario y eso es lo mas importnte.
 
 ## "Zelic no busca ser la inteligencia artificial más avanzada. Busca ser la que mejor te entiende."
+
+
+# 24 - 06 -2026
+
+me he sentido un poco perdido, siento que el proyecto se me sale de las manos pero se que puedo hacerlo. me siento como sin ganas de hacer nada pero debo hacerlo

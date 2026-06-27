@@ -96,4 +96,106 @@ basicamente se confia en la imagen con un porcentaj, y la IA analiza exaustvamen
 
 si alguien llegase a editar la imagen de manera casi perfecta y quedara registrado los encargado del la contabilidad del club se darian cuenta y determinarian qeu persona fue consultando la base de datos o chat. este escenario es muuuuy poco probable pero no imposible, por eso quiero hacer un sistema fuerte pero simple paro no tener que obtener la clave api de cada uno de los bancos y cada uno de los registros de pago en cada cuenta. la idea de boy es REDUCIR el trabajo pesado de la secretaria a un 95% y el 5% sea manual.
 
-##
+## 25 - 06 - 2026
+
+despues de pensar bastante la arquitectura de BOY, se decidio utiliza una llave bre-b bancolombia, con eso todo llega a la cuenta deseada independientemente si la plata viene de otra plataforma como nequi o daviplata.
+
+tambien se decidio confiar en la imagen de comprobante de pago. ya que para acceder a los movimientos en bancolombia o pedir dinero al usuario requerian pasarelas como whompi.
+
+ahora estoy organizando la base de datos para que quede todo full organizado y evitar dolores de cabeza a futuro
+
+El bot ahora puede responder:
+
+"¿Cuánto debo?" → consultar_estado_pago
+"¿Qué he pagado?" → consultar_estado_pago
+"¿Estoy al día?" → consultar_estado_pago
+
+Resumen de arquitectura
+Capa	Responsabilidad	Dependencias
+Router	Recibe HTTP, delega	Solo application
+Application	Coordina flujo	domain, repositories, adapters
+Domain	Lógica de negocio	Nada (puro)
+Repositories	Persistencia	services/supabase_client
+Adapters	Infraestructura externa	Solo SDKs externos
+
+Fase 1: Conceptos, Config, Obligaciones	✅
+Fase 2: ProcesoPago + Flujo conversacional	✅
+Fase 3: Refactor Gemini + Adaptadores	✅
+Fase 4: Automatización + Recordatorios	✅
+
+el dia que quiera cambiar por ejemplo a postgresql o gemini por open ai, no tocare el dominio
+
+Antes BOY pensaba:
+mensualidad
+
+Ahora piensa:
+obligación
+
+Eso hace que el sistema pueda cobrar prácticamente cualquier cosa.
+
+ProcesoPago - contexto con comprobante
+
+NO hardcodes
+
+## tests de produccion
+
+☐ Inscribir deportista 
+
+☐ Consultar deportista
+
+☐ Crear obligación
+
+☐ Consultar obligaciones
+
+☐ Iniciar pago
+
+☐ Enviar comprobante válido
+
+☐ Enviar comprobante inválido
+
+☐ Enviar comprobante repetido
+
+☐ Error 503 Gemini
+
+☐ Error 429 Gemini
+
+☐ Dos pagos simultáneos
+
+☐ Pago de obligación inexistente
+
+☐ Usuario sin obligaciones
+
+## 26 - 06 -2026
+
+ok me toco refinar otra vez la aquitectura:
+
+                PAPÁ HABLA CON BOY
+                        │
+                        ▼
+            ¿Ya tienes matrícula?
+                  │         │
+                 Sí         No
+                 │          │
+                 │      Proceso de matrícula
+                 │          │
+                 │      Paga matrícula
+                 │          │
+                 │    Verificación comprobante
+                 │          │
+                 │
+        Deportista creado
+        estado = INACTIVO
+        nivel = definido
+                 │
+                 ▼
+        Debe activar el mes
+                 │
+        Paga mensualidad
+                 │
+        Verificación
+                 │
+        estado = ACTIVO
+
+se tienen en cuenta los posibles errores humanos como el de los padres al hacer el pago, tambien se maneja la memoria para que BOY recuerde cosas puntuales, ademas en el flujo se explica como funciona lo da la activacion de la mensualidad, y aparte se desactiva al finalizar el mes y tienen un plazo de 10 dias para reactivarla o si no se le cobrara una mora de 10.000 cop. las conversaciones con todos los papas son por id's, y los padres pueden inscribir a sus 2 hijos sin comnflictos
+
+Esta parte es mas personal, es increible lo lejos que he llegado y lo que me falta por recorrer, me acuerdo de hace un año haciendo una calculadora en python y ahora tengo un sistema con IA de consultas e inscripciones de deportistastas mediante una base de datos, aparte veo mis otros proyectos como ZELIC o CRONODEPORTIVO, y digo: guau, he avanzado mucho, pero aun estan los miedos de que pasara si no funciona o si soy capaz de hacerlo. pero me he demostrado que soy capaz de hacer todo...

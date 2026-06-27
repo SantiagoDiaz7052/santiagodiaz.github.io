@@ -70,6 +70,15 @@ orquestador no -> mejor que zelic tome la mejor decision
 sonidos de generacion, y que hable constantemente
 
 
+
+Lo que hace que una IA se sienta "real"
+
+1. Memoria de hechos
+2. Memoria de patrones
+3. Inferencias
+
+4. METAPATRONES
+
 #######################################
 
 logs ERRRORES:

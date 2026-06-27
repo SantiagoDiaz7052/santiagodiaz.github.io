@@ -24,3 +24,57 @@ Entrega de kits.
 Acceso a zonas restringidas.
 Alimentación.
 Salida.
+
+
+## Sistema de acceso automatizado
+
+La IA:
+
+Recibe comprobantes.
+Verifica autenticidad.
+Detecta anomalías.
+Decide si concede acceso.
+Genera registros.
+
+No es una aplicación tradicional.
+
+Es un sistema que observa y actúa.
+
+## Zelic Personal
+
+La IA:
+
+Escucha.
+Comprende.
+Automatiza.
+Ejecuta tareas.
+
+Observa y actúa.
+
+## Zelic Enterprise
+
+La IA:
+
+Analiza información empresarial.
+Supervisa infraestructura.
+Coordina procesos.
+
+Observa y actúa.
+
+## Zelic Shield
+
+La IA:
+
+Monitorea tráfico.
+Detecta amenazas.
+Responde automáticamente.
+
+Observa y actúa.
+
+## BOY
+
+Por lo que hemos hablado de BOY, también tiene un componente fuerte de análisis, decisión y automatización.
+
+Otra vez:
+
+Observa y actúa.
