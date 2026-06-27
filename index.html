@@ -1,242 +1,405 @@
-import { useState } from 'react';
-import { motion } from 'motion/react';
-import { Sparkles, Bot, Radio, Timer, Cpu, Wrench, Calendar, Video, Moon, Sun, Github, Linkedin, Mail } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santiago Díaz - Portafolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const projects = [
-    {
-      id: 1,
-      title: "Zelic",
-      description: "Asistente con IA enfocado en la productividad y automatización.",
-      icon: Sparkles,
-      gradient: "from-purple-500 via-pink-500 to-red-500",
-      bgPattern: "radial-gradient(circle at 20% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 50%)",
-      tags: ["IA", "Productividad", "Automatización"]
-    },
-    {
-      id: 2,
-      title: "StarBOT",
-      description: "La secretaria virtual para clubes deportivos: atención, gestión y automatización por WhatsApp.",
-      icon: Bot,
-      gradient: "from-blue-500 via-cyan-500 to-teal-500",
-      bgPattern: "repeating-linear-gradient(45deg, rgba(6, 182, 212, 0.05) 0px, rgba(6, 182, 212, 0.05) 2px, transparent 2px, transparent 10px)",
-      tags: ["WhatsApp API", "Automatización", "Deportes"]
-    },
-    {
-      id: 3,
-      title: "Sistema de transmisiones deportivas",
-      description: "Sistema técnico para eventos deportivos en tiempo real.",
-      icon: Radio,
-      gradient: "from-orange-500 via-red-500 to-pink-600",
-      bgPattern: "linear-gradient(135deg, rgba(249, 115, 22, 0.08) 25%, transparent 25%)",
-      tags: ["Streaming", "Tiempo Real", "Eventos"]
-    },
-    {
-      id: 4,
-      title: "Creación de cronómetros",
-      description: "Software de fotoceldas para medición precisa de tiempos.",
-      icon: Timer,
-      gradient: "from-green-500 via-emerald-500 to-teal-600",
-      bgPattern: "radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)",
-      tags: ["Hardware", "Precisión", "Deportes"]
-    },
-    {
-      id: 5,
-      title: "Arduino",
-      description: "Conocimiento técnico básico de control y construcción de placas Arduino + Python.",
-      icon: Cpu,
-      gradient: "from-indigo-500 via-purple-500 to-pink-500",
-      bgPattern: "repeating-linear-gradient(90deg, rgba(99, 102, 241, 0.05) 0px, rgba(99, 102, 241, 0.05) 1px, transparent 1px, transparent 20px)",
-      tags: ["IoT", "Python", "Hardware"]
-    },
-    {
-      id: 6,
-      title: "Mantenimiento de computadores",
-      description: "Servicio profesional de mantenimiento y reparación de PCs.",
-      icon: Wrench,
-      gradient: "from-gray-600 via-slate-600 to-zinc-700",
-      bgPattern: "linear-gradient(45deg, rgba(71, 85, 105, 0.08) 25%, transparent 25%)",
-      tags: ["Hardware", "Reparación", "Soporte"]
-    },
-    {
-      id: 7,
-      title: "Gestión de eventos",
-      description: "Gestión de pagos, consultas de bases de datos e inscripciones para eventos.",
-      icon: Calendar,
-      gradient: "from-yellow-500 via-amber-500 to-orange-600",
-      bgPattern: "radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.08) 0%, transparent 50%)",
-      tags: ["BD", "Pagos", "Eventos"]
-    },
-    {
-      id: 8,
-      title: "Publicidad y videos",
-      description: "Creación de publicidad y contenido para redes sociales.",
-      icon: Video,
-      gradient: "from-rose-500 via-fuchsia-500 to-purple-600",
-      bgPattern: "repeating-linear-gradient(135deg, rgba(236, 72, 153, 0.05) 0px, rgba(236, 72, 153, 0.05) 2px, transparent 2px, transparent 12px)",
-      tags: ["Marketing", "Diseño", "Redes Sociales"]
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --subtext: #475569;
+      --tag-bg: #f1f5f9;
+      --tag-text: #334155;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.15);
     }
-  ];
 
-  return (
-    <div className={`min-h-screen transition-colors duration-500 ${darkMode ? 'dark bg-gray-950' : 'bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50'}`}>
-      {/* Theme Toggle */}
-      <motion.button
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        onClick={() => setDarkMode(!darkMode)}
-        className={`fixed top-6 right-6 z-50 p-3 rounded-full shadow-lg transition-colors ${
-          darkMode ? 'bg-yellow-400 text-gray-900' : 'bg-gray-900 text-yellow-400'
-        }`}
-      >
-        {darkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
-      </motion.button>
+    body.dark {
+      --bg: #030712;
+      --surface: #111827;
+      --text: #f9fafb;
+      --subtext: #9ca3af;
+      --tag-bg: #1f2937;
+      --tag-text: #d1d5db;
+      --shadow: 0 4px 24px rgba(0,0,0,0.4);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.6);
+    }
 
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-            className={`w-32 h-32 rounded-full mx-auto mb-8 bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white text-5xl font-bold shadow-2xl`}
-          >
-            SD
-          </motion.div>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.4s, color 0.4s;
+      min-height: 100vh;
+    }
 
-          <h1 className={`text-6xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent ${darkMode ? 'opacity-90' : ''}`}>
-            Santiago Díaz
-          </h1>
+    /* Toggle */
+    #toggle {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      background: #1e293b;
+      color: #facc15;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background 0.3s, transform 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    body.dark #toggle { background: #facc15; color: #1e293b; }
+    #toggle:hover { transform: scale(1.1); }
 
-          <p className={`text-xl mb-8 max-w-2xl mx-auto ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-            Desarrollador de software en formación enfocado en inteligencia artificial,
-            educación y proyectos tecnológicos.
-          </p>
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 6rem 1rem 4rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
 
-          <div className="flex gap-4 justify-center">
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://github.com"
-              className={`p-3 rounded-full transition-colors ${
-                darkMode ? 'bg-gray-800 hover:bg-gray-700 text-white' : 'bg-white hover:bg-gray-100 text-gray-900'
-              } shadow-lg`}
-            >
-              <Github className="w-6 h-6" />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://linkedin.com"
-              className={`p-3 rounded-full transition-colors ${
-                darkMode ? 'bg-gray-800 hover:bg-gray-700 text-white' : 'bg-white hover:bg-gray-100 text-gray-900'
-              } shadow-lg`}
-            >
-              <Linkedin className="w-6 h-6" />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="mailto:santiago@example.com"
-              className={`p-3 rounded-full transition-colors ${
-                darkMode ? 'bg-gray-800 hover:bg-gray-700 text-white' : 'bg-white hover:bg-gray-100 text-gray-900'
-              } shadow-lg`}
-            >
-              <Mail className="w-6 h-6" />
-            </motion.a>
-          </div>
-        </motion.div>
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: white;
+      font-size: 2.5rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 8px 32px rgba(124, 58, 237, 0.4);
+      animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
 
-        {/* Projects Grid */}
-        <motion.h2
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className={`text-4xl font-bold text-center mb-12 ${darkMode ? 'text-white' : 'text-gray-900'}`}
-        >
-          Proyectos
-        </motion.h2>
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {projects.map((project, index) => {
-            const Icon = project.icon;
-            return (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index, duration: 0.5 }}
-                whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                className={`group relative overflow-hidden rounded-2xl p-6 transition-all duration-300 ${
-                  darkMode ? 'bg-gray-900' : 'bg-white'
-                } shadow-xl hover:shadow-2xl`}
-                style={{
-                  background: darkMode
-                    ? `${project.bgPattern}, #111827`
-                    : `${project.bgPattern}, white`
-                }}
-              >
-                {/* Gradient Overlay on Hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
 
-                {/* Icon with Gradient */}
-                <div className={`relative mb-4 w-16 h-16 rounded-xl bg-gradient-to-br ${project.gradient} p-3 shadow-lg`}>
-                  <Icon className="w-full h-full text-white" />
-                </div>
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--subtext);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.7s 0.25s ease both;
+    }
 
-                {/* Title */}
-                <h3 className={`relative text-2xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                  {project.title}
-                </h3>
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-                {/* Description */}
-                <p className={`relative mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  {project.description}
-                </p>
+    .socials {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      animation: fadeUp 0.7s 0.35s ease both;
+    }
 
-                {/* Tags */}
-                <div className="relative flex flex-wrap gap-2">
-                  {project.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        darkMode
-                          ? 'bg-gray-800 text-gray-300'
-                          : 'bg-gray-100 text-gray-700'
-                      }`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+    .social-link {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .social-link:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+    .social-link svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-                {/* Hover Border Effect */}
-                <div
-                  className={`absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-current bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                  style={{
-                    WebkitMaskImage: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                    WebkitMaskComposite: 'xor',
-                    maskComposite: 'exclude',
-                    padding: '2px'
-                  }}
-                />
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
+    /* Section title */
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
 
-      {/* Footer */}
-      <footer className={`py-8 text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-        <p>© 2026 Santiago Díaz - Desarrollador en formación</p>
-      </footer>
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    /* Card */
+    .card {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      animation: fadeUp 0.6s ease both;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-glow {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .card:hover .card-glow { opacity: 0.08; }
+
+    .card-border {
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    .card:hover .card-border { opacity: 1; }
+
+    .icon-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .icon-box svg { width: 30px; height: 30px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .card p  { font-size: 0.95rem; color: var(--subtext); line-height: 1.6; margin-bottom: 1rem; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--subtext);
+      font-size: 0.9rem;
+    }
+
+    /* Stagger delays */
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.10s; }
+    .card:nth-child(3) { animation-delay: 0.15s; }
+    .card:nth-child(4) { animation-delay: 0.20s; }
+    .card:nth-child(5) { animation-delay: 0.25s; }
+    .card:nth-child(6) { animation-delay: 0.30s; }
+    .card:nth-child(7) { animation-delay: 0.35s; }
+    .card:nth-child(8) { animation-delay: 0.40s; }
+  </style>
+</head>
+<body>
+
+  <button id="toggle" onclick="toggleDark()" title="Cambiar tema">🌙</button>
+
+  <div class="hero">
+    <div class="avatar">SD</div>
+    <h1>Santiago Díaz</h1>
+    <p>Desarrollador de software en formación enfocado en inteligencia artificial, educación y proyectos tecnológicos.</p>
+    <div class="socials">
+      <a class="social-link" href="https://github.com/TU_USUARIO" target="_blank" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+      <a class="social-link" href="https://linkedin.com/in/TU_USUARIO" target="_blank" title="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a class="social-link" href="mailto:TU_CORREO@gmail.com" title="Email">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
     </div>
-  );
-}
+  </div>
+
+  <h2 class="section-title">Proyectos</h2>
+
+  <div class="grid">
+
+    <!-- Zelic -->
+    <div class="card" style="background-image: radial-gradient(circle at 20% 50%, rgba(147,51,234,0.08) 0%, transparent 60%)">
+      <div class="card-glow" style="background: linear-gradient(135deg,#a855f7,#ec4899,#ef4444)"></div>
+      <div class="card-border" style="background: linear-gradient(135deg,#a855f7,#ec4899,#ef4444)"></div>
+      <div class="icon-box" style="background: linear-gradient(135deg,#a855f7,#ec4899,#ef4444)">
+        <svg viewBox="0 0 24 24"><path d="M12 3l1.5 3 3.5.5-2.5 2.5.5 3.5L12 11l-3 1.5.5-3.5L7 6.5l3.5-.5z"/><path d="M12 14v8M8 17l4 5 4-5"/></svg>
+      </div>
+      <h3>Zelic</h3>
+      <p>Asistente con IA enfocado en la productividad y automatización.</p>
+      <div class="tags">
+        <span class="tag">IA</span>
+        <span class="tag">Productividad</span>
+        <span class="tag">Automatización</span>
+      </div>
+    </div>
+
+    <!-- StarBOT -->
+    <div class="card" style="background-image: repeating-linear-gradient(45deg, rgba(6,182,212,0.04) 0px, rgba(6,182,212,0.04) 2px, transparent 2px, transparent 10px)">
+      <div class="card-glow" style="background: linear-gradient(135deg,#3b82f6,#06b6d4,#14b8a6)"></div>
+      <div class="card-border" style="background: linear-gradient(135deg,#3b82f6,#06b6d4,#14b8a6)"></div>
+      <div class="icon-box" style="background: linear-gradient(135deg,#3b82f6,#06b6d4,#14b8a6)">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M12 2a4 4 0 0 1 4 4v5H8V6a4 4 0 0 1 4-4z"/><circle cx="9" cy="16" r="1" fill="white"/><circle cx="15" cy="16" r="1" fill="white"/></svg>
+      </div>
+      <h3>StarBOT</h3>
+      <p>La secretaria virtual para clubes deportivos: atención, gestión y automatización por WhatsApp.</p>
+      <div class="tags">
+        <span class="tag">WhatsApp API</span>
+        <span class="tag">Automatización</span>
+        <span class="tag">Deportes</span>
+      </div>
+    </div>
+
+    <!-- Transmisiones -->
+    <div class="card" style="background-image: linear-gradient(135deg, rgba(249,115,22,0.07) 25%, transparent 25%)">
+      <div class="card-glow" style="background: linear-gradient(135deg,#f97316,#ef4444,#db2777)"></div>
+      <div class="card-border" style="background: linear-gradient(135deg,#f97316,#ef4444,#db2777)"></div>
+      <div class="icon-box" style="background: linear-gradient(135deg,#f97316,#ef4444,#db2777)">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+      </div>
+      <h3>Transmisiones Deportivas</h3>
+      <p>Sistema técnico para eventos deportivos en tiempo real.</p>
+      <div class="tags">
+        <span class="tag">Streaming</span>
+        <span class="tag">Tiempo Real</span>
+        <span class="tag">Eventos</span>
+      </div>
+    </div>
+
+    <!-- Cronómetros -->
+    <div class="card" style="background-image: radial-gradient(circle at 80% 20%, rgba(16,185,129,0.09) 0%, transparent 55%)">
+      <div class="card-glow" style="background: linear-gradient(135deg,#22c55e,#10b981,#0d9488)"></div>
+      <div class="card-border" style="background: linear-gradient(135deg,#22c55e,#10b981,#0d9488)"></div>
+      <div class="icon-box" style="background: linear-gradient(135deg,#22c55e,#10b981,#0d9488)">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M9.5 3h5M12 3v2"/></svg>
+      </div>
+      <h3>Cronómetros</h3>
+      <p>Software de fotoceldas para medición precisa de tiempos en competencias.</p>
+      <div class="tags">
+        <span class="tag">Hardware</span>
+        <span class="tag">Precisión</span>
+        <span class="tag">Deportes</span>
+      </div>
+    </div>
+
+    <!-- Arduino -->
+    <div class="card" style="background-image: repeating-linear-gradient(90deg, rgba(99,102,241,0.04) 0px, rgba(99,102,241,0.04) 1px, transparent 1px, transparent 20px)">
+      <div class="card-glow" style="background: linear-gradient(135deg,#6366f1,#a855f7,#ec4899)"></div>
+      <div class="card-border" style="background: linear-gradient(135deg,#6366f1,#a855f7,#ec4899)"></div>
+      <div class="icon-box" style="background: linear-gradient(135deg,#6366f1,#a855f7,#ec4899)">
+        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 12h6M12 9v6"/><circle cx="8" cy="8" r="1" fill="white"/><circle cx="16" cy="8" r="1" fill="white"/></svg>
+      </div>
+      <h3>Arduino</h3>
+      <p>Control y construcción de placas Arduino con integración Python para IoT.</p>
+      <div class="tags">
+        <span class="tag">IoT</span>
+        <span class="tag">Python</span>
+        <span class="tag">Hardware</span>
+      </div>
+    </div>
+
+    <!-- Mantenimiento -->
+    <div class="card" style="background-image: linear-gradient(45deg, rgba(71,85,105,0.07) 25%, transparent 25%)">
+      <div class="card-glow" style="background: linear-gradient(135deg,#475569,#334155,#1e293b)"></div>
+      <div class="card-border" style="background: linear-gradient(135deg,#475569,#334155,#1e293b)"></div>
+      <div class="icon-box" style="background: linear-gradient(135deg,#475569,#334155,#1e293b)">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <h3>Mantenimiento de PCs</h3>
+      <p>Servicio profesional de mantenimiento, diagnóstico y reparación de computadores.</p>
+      <div class="tags">
+        <span class="tag">Hardware</span>
+        <span class="tag">Reparación</span>
+        <span class="tag">Soporte</span>
+      </div>
+    </div>
+
+    <!-- Gestión de Eventos -->
+    <div class="card" style="background-image: radial-gradient(circle at 50% 50%, rgba(245,158,11,0.07) 0%, transparent 55%)">
+      <div class="card-glow" style="background: linear-gradient(135deg,#eab308,#f59e0b,#ea580c)"></div>
+      <div class="card-border" style="background: linear-gradient(135deg,#eab308,#f59e0b,#ea580c)"></div>
+      <div class="icon-box" style="background: linear-gradient(135deg,#eab308,#f59e0b,#ea580c)">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+      </div>
+      <h3>Gestión de Eventos</h3>
+      <p>Plataforma para pagos, inscripciones y consultas de bases de datos en eventos.</p>
+      <div class="tags">
+        <span class="tag">BD</span>
+        <span class="tag">Pagos</span>
+        <span class="tag">Eventos</span>
+      </div>
+    </div>
+
+    <!-- Publicidad -->
+    <div class="card" style="background-image: repeating-linear-gradient(135deg, rgba(236,72,153,0.04) 0px, rgba(236,72,153,0.04) 2px, transparent 2px, transparent 12px)">
+      <div class="card-glow" style="background: linear-gradient(135deg,#f43f5e,#d946ef,#7c3aed)"></div>
+      <div class="card-border" style="background: linear-gradient(135deg,#f43f5e,#d946ef,#7c3aed)"></div>
+      <div class="icon-box" style="background: linear-gradient(135deg,#f43f5e,#d946ef,#7c3aed)">
+        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      </div>
+      <h3>Publicidad y Videos</h3>
+      <p>Creación de contenido publicitario y material visual para redes sociales.</p>
+      <div class="tags">
+        <span class="tag">Marketing</span>
+        <span class="tag">Diseño</span>
+        <span class="tag">Redes Sociales</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>© 2026 Santiago Díaz — Desarrollador en formación</footer>
+
+  <script>
+    function toggleDark() {
+      const dark = document.body.classList.toggle('dark');
+      document.getElementById('toggle').textContent = dark ? '☀️' : '🌙';
+    }
+  </script>
+
+</body>
+</html>
