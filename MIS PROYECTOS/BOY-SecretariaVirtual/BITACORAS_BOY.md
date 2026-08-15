@@ -199,3 +199,13 @@ ok me toco refinar otra vez la aquitectura:
 se tienen en cuenta los posibles errores humanos como el de los padres al hacer el pago, tambien se maneja la memoria para que BOY recuerde cosas puntuales, ademas en el flujo se explica como funciona lo da la activacion de la mensualidad, y aparte se desactiva al finalizar el mes y tienen un plazo de 10 dias para reactivarla o si no se le cobrara una mora de 10.000 cop. las conversaciones con todos los papas son por id's, y los padres pueden inscribir a sus 2 hijos sin comnflictos
 
 Esta parte es mas personal, es increible lo lejos que he llegado y lo que me falta por recorrer, me acuerdo de hace un año haciendo una calculadora en python y ahora tengo un sistema con IA de consultas e inscripciones de deportistastas mediante una base de datos, aparte veo mis otros proyectos como ZELIC o CRONODEPORTIVO, y digo: guau, he avanzado mucho, pero aun estan los miedos de que pasara si no funciona o si soy capaz de hacerlo. pero me he demostrado que soy capaz de hacer todo...
+
+
+# 22/07/2026
+
+no he vuelto hacer bitracoras, voy a adelantar lo que he hecho...
+me toco restructurar todo BOY, estaba pensando mucho en automatizar, pero el problema era lo practico. mas como es un club de patinaje el contacto es virtual y fisico, y ademas antes tenia muchos archivos, mucho codigo, pero al fina nada funcionaba, entonces hice una limpieza profunda y deje lo basico, y me enfoque en lo mas sencillo y utilil
+
+ boy ahora es la mano derecha de la secretaria, haciendo que boy de la informacion tediosa y paso informcion y horarios, y lo mas importante boy notifica cuando necesita ayuda de ivonn, ahi entra el panel web de la secretaria que le informa todo eso, actualmente lo estoy desarrollando, despues les comento como me va quedando ":)".
+
+ estoy muy estresadooooooooooooooOooOOoOoOoO

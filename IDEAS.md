@@ -85,3 +85,8 @@ Observa y actúa.
 
 mira que apesar de estar metiendole duro a todo eso y haciendo lo mio, me siento muy solo, llego del colegio y estoy toda la tarde y la noche hasta que no puedo mas, y no es la 1ra vez, quisiera poder hacer algo diferente salir de la rutina, eso es lo dificil de la programacion.
 hoy me siento triste, pero ya mañana se me quita y sigo en lo mio 15/07/2026
+
+
+#
+
+el estres me esta matando, ya no puedo ni dormir bien por culpa de la ansiedad,

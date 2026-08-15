@@ -105,3 +105,8 @@ como me di cuenta de esta idea, estaba hablando con Chatgpt, y yo le cuento todo
 # 24 - 06 -2026
 
 me he sentido un poco perdido, siento que el proyecto se me sale de las manos pero se que puedo hacerlo. me siento como sin ganas de hacer nada pero debo hacerlo
+
+
+# 29 - 07 -2026
+
+hoy vuelvo a trabajar en zelic, hago una limpieza profunda de zelic, retrocediento un poco para avanzar mas, la IA es buena, pero crea mucha basura, entonces toca estar pendiente de eso. igual qeu boy, limpie y mejoró en 200%, entonces vamos a darle durito
