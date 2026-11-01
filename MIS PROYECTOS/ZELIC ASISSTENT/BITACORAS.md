@@ -139,3 +139,120 @@ lo he estado probando bastante y en este momento ya no utilizo otras ias de uso 
 esto va a ser algo grande una IA que no solo responda, si no que te endienda que tenga sus valores, criterio, su propia opinion, saber equivocarse....
 
 es dificil, estresa mucho pero lo hago por que amo esto y se que esto dara frutos
+
+
+# 1 - 11 - 2026
+
+# 01 - 11 - 2026
+
+Hace tiempo no hago una bitácora. Eso no significa que haya dejado de construir ZELIC. De hecho, han pasado tantas cosas que ya era hora de sentarme a escribirlas, porque quiero conservar la historia de este proyecto y, en un futuro, poder mirar atrás y decir: *wow, cuánto he avanzado*.
+
+Desde la última entrada, ZELIC ha cambiado bastante. Ya no estoy solamente construyendo una IA con una personalidad y una memoria. Ahora también estoy trabajando en convertirla en una aplicación que otras personas puedan instalar, utilizar y hacer parte de su día a día.
+
+Y eso ha traído problemas nuevos, aprendizajes nuevos y una responsabilidad mucho mayor.
+
+## ZELIC empieza a tomar forma
+
+Una de las cosas en las que más he trabajado es en ALMA.
+
+Desde el principio tenía claro que no quería hacer otro chatbot que simplemente respondiera preguntas. Quería construir algo capaz de entender al usuario, recordar lo importante, mantener coherencia y actuar de acuerdo con unos valores y un criterio.
+
+Por eso empecé a organizar ALMA alrededor de pilares como la identidad, la memoria, el criterio, los valores, la conciencia, la intención, las relaciones y la intuición.
+
+Mi objetivo es que ZELIC no dependa únicamente de un prompt gigantesco para definir cómo debe comportarse. Quiero que exista una estructura que le permita interpretar las situaciones, utilizar sus recuerdos y tomar decisiones de una forma coherente con su identidad.
+
+Todavía queda muchísimo por resolver, especialmente en la memoria y en la relación entre las distintas capacidades de ZELIC. Pero ahora tengo una visión mucho más clara de lo que quiero construir y de cómo quiero organizarlo.
+
+## De un programa local a una aplicación de verdad
+
+Otra de las grandes evoluciones fue empezar a trabajar en ZELIC Client.
+
+Hasta entonces, gran parte de la experiencia estaba concentrada en ZELIC Local, que se ejecutaba en mi computador. Pero quería dar el siguiente paso: que ZELIC tuviera una aplicación de escritorio, con una interfaz propia, una experiencia más cuidada y una forma sencilla de iniciar sesión y acceder a sus funciones.
+
+Así empezó a tomar forma ZELIC Client.
+
+He trabajado en su interfaz, en los sonidos, en las animaciones, en la configuración y en detalles que pueden parecer pequeños, pero que cambian la forma en que una persona siente una aplicación.
+
+El orbe, por ejemplo, no es simplemente un elemento decorativo. Quiero que forme parte de la identidad visual de ZELIC y que la interfaz transmita que hay algo activo detrás de ella, no solamente una ventana esperando instrucciones.
+
+También he tenido que aprender a separar responsabilidades, corregir errores, revisar cambios hechos por herramientas de IA y comprobar que las cosas funcionen realmente. Porque una interfaz puede verse bonita en una captura, pero eso no significa que todo lo que hay detrás esté funcionando correctamente.
+
+## El reto de convertirlo en un producto
+
+En algún momento tenía que dejar de pensar únicamente en que ZELIC funcionara en mi computador.
+
+Si quiero que otras personas puedan utilizarla, necesito resolver cosas que antes podía pasar por alto: las cuentas, la autenticación, la distribución, las actualizaciones, la infraestructura y la conservación de la información de los usuarios.
+
+Por eso empecé a trabajar en ZELIC Web, utilizando Render y Supabase para conectar diferentes partes del proyecto.
+
+También construí el sistema de distribución de ZELIC Client para poder publicar versiones y hacer que la aplicación detecte nuevas actualizaciones.
+
+Esto me obligó a enfrentar problemas distintos a los de programar una función. Ya no basta con que algo funcione una vez en mi máquina. Ahora tengo que pensar en cómo se instala, cómo se actualiza, qué ocurre cuando falla y cómo evitar que los usuarios pierdan su progreso.
+
+Son cosas que no siempre se ven en una demostración, pero que hacen parte de construir un producto real.
+
+## ZELIC Client 0.1.2
+
+Hoy, primero de noviembre de 2026, ZELIC Client llegó a la versión 0.1.2 y fue publicada públicamente.
+
+Puede parecer un número pequeño, pero detrás hay muchas horas de trabajo, pruebas, errores y correcciones.
+
+Esta versión incluye mejoras en la interfaz, ajustes en los sonidos, cambios en la sección de comunidad y correcciones relacionadas con la configuración de producción. También trabajé en el sistema de actualizaciones para que el cliente pueda encontrar las nuevas versiones publicadas.
+
+Por primera vez, no se trataba solamente de ejecutar el proyecto desde mi entorno de desarrollo. Había que generar un instalador, comprobar su firma, publicar los archivos y verificar que el servidor anunciara la versión correcta.
+
+Y lo conseguimos.
+
+Todavía quedan pruebas pendientes, especialmente comprobar una actualización real desde una instalación anterior. No quiero confundir publicar una versión con haber verificado absolutamente todos los escenarios. Pero llegar hasta aquí ya representa un avance importante.
+
+ZELIC empieza a salir de mi computador y a convertirse en algo que otras personas pueden instalar.
+
+## Construir también significa aprender a soltar
+
+Hay algo que me sigue costando: el perfeccionismo.
+
+Quiero que todo funcione, que la interfaz se vea bien, que la memoria sea coherente y que cada detalle tenga sentido. Muchas veces eso me lleva a invertir demasiado tiempo en algo que todavía podría mejorar más adelante.
+
+Y el problema es que ZELIC es un proyecto enorme. Siempre habrá un error por corregir, una función por construir o una parte que podría hacerse mejor.
+
+He tenido que aprender que construir algo no significa dejarlo perfecto antes de permitir que exista. Significa conseguir que funcione, comprobarlo, aprender de los errores y seguir mejorándolo sin destruir lo que ya está bien.
+
+También he aprendido a tener más cuidado con las herramientas de IA. Son capaces de ayudarme a avanzar muy rápido, pero no siempre producen exactamente lo que necesito. Por eso es importante revisar el código, entender los cambios y comprobar los resultados en lugar de confiar ciegamente en una respuesta que dice que todo está listo.
+
+Quiero que la IA me ayude a construir ZELIC, no perder el control de lo que estoy construyendo.
+
+## Lo que viene
+
+Hay muchas cosas que todavía quiero conseguir.
+
+Quiero mejorar la memoria para que ZELIC mantenga una relación más coherente con el usuario. Quiero seguir trabajando en la voz, en la integración de sus capacidades y en la posibilidad de que pueda utilizar el computador para resolver tareas reales.
+
+También quiero explorar una idea que me emociona bastante: que ZELIC pueda comunicarse con herramientas como OpenCode para construir aplicaciones y ejecutar proyectos a partir de instrucciones en lenguaje natural.
+
+Imagínate poder decirle a ZELIC que necesitas una aplicación, explicarle qué quieres conseguir y que ella coordine las herramientas necesarias para construirla, probarla y corregir los errores.
+
+No quiero que ZELIC sea solamente una ventana desde la que se hacen preguntas. Quiero que sea una compañera capaz de comprender lo que necesitas y ayudarte a convertirlo en algo real.
+
+Pero todavía tengo que construir muchas de esas capacidades. No quiero confundir lo que imagino con lo que ya funciona.
+
+## Mirando hacia atrás
+
+Cuando empecé, ZELIC era un chatbot sencillo que funcionaba desde la consola. No sabía todo lo que iba a aprender ni la cantidad de problemas que tendría que resolver.
+
+Después llegaron la voz, la interfaz, la memoria, ALMA, las herramientas, la aplicación de escritorio, las cuentas y la publicación.
+
+Cada etapa me ha obligado a aprender cosas que antes no sabía. Algunas han sido emocionantes y otras bastante frustrantes. Ha habido momentos en los que sentía que el proyecto se me salía de las manos, especialmente cuando algo que parecía sencillo terminaba convirtiéndose en semanas de trabajo.
+
+Pero sigo aquí.
+
+No porque ZELIC ya sea exactamente lo que quiero, sino porque todavía quiero descubrir hasta dónde puedo llevarla.
+
+**ZELIC no busca ser la inteligencia artificial más avanzada. Busca ser la que mejor te entiende.**
+
+Y ahora, además de intentar construir esa idea, estoy aprendiendo a convertirla en una aplicación real, con una estructura, una experiencia y un camino para llegar a otras personas.
+
+Todavía queda mucho por hacer.
+
+Pero cuando miro hacia atrás y recuerdo aquel chatbot de CMD, me doy cuenta de que ya no estoy en el mismo lugar.
+
+Y eso merece quedar escrito.
